@@ -1,6 +1,6 @@
-# Hello CDK
+# Hello CDK (TypeScript)
 
-This is a minimal CDK Hello World project template based on the AWS CDK tutorial for typescript.
+This is a minimal CDK Hello World project template based on the AWS CDK tutorial for TypeScript.
 
 ## Getting Started
 
