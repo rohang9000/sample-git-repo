@@ -1,4 +1,4 @@
-# Hello CDK (JavaScript)
+# Hello CDK
 
 This is a minimal CDK Hello World project template based on the AWS CDK tutorial for JavaScript.
 
