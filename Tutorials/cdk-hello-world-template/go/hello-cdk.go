@@ -7,11 +7,11 @@ import (
 	"github.com/aws/jsii-runtime-go"
 )
 
-type HelloCdkStackProps struct {
+type AcmeServerlessStackProps struct {
 	awscdk.StackProps
 }
 
-func NewHelloCdkStack(scope constructs.Construct, id string, props *HelloCdkStackProps) awscdk.Stack {
+func NewAcmeServerlessStack(scope constructs.Construct, id string, props *AcmeServerlessStackProps) awscdk.Stack {
 	var sprops awscdk.StackProps
 	if props != nil {
 		sprops = props.StackProps
@@ -19,14 +19,14 @@ func NewHelloCdkStack(scope constructs.Construct, id string, props *HelloCdkStac
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
 	// Define the Lambda function resource
-	myFunction := awslambda.NewFunction(stack, jsii.String("HelloWorldFunction"), &awslambda.FunctionProps{
+	myFunction := awslambda.NewFunction(stack, jsii.String("AcmeApiFunction"), &awslambda.FunctionProps{
 		Runtime: awslambda.Runtime_NODEJS_18_X(), // Provide any supported Node.js runtime
 		Handler: jsii.String("index.handler"),
 		Code: awslambda.Code_FromInline(jsii.String(`
 			exports.handler = async function(event) {
 				return {
 					statusCode: 200,
-					body: JSON.stringify('Hello World!'),
+					body: JSON.stringify('Welcome to Acme Corp API!'),
 				};
 			};
 		`)),
@@ -38,7 +38,7 @@ func NewHelloCdkStack(scope constructs.Construct, id string, props *HelloCdkStac
 	})
 
 	// Define a CloudFormation output for your URL
-	awscdk.NewCfnOutput(stack, jsii.String("myFunctionUrlOutput"), &awscdk.CfnOutputProps{
+	awscdk.NewCfnOutput(stack, jsii.String("AcmeFunctionUrlOutput"), &awscdk.CfnOutputProps{
 		Value: myFunctionUrl.Url(),
 	})
 
@@ -50,7 +50,7 @@ func main() {
 
 	app := awscdk.NewApp(nil)
 
-	NewHelloCdkStack(app, "HelloCdkStack", &HelloCdkStackProps{
+	NewAcmeServerlessStack(app, "AcmeServerlessStack", &AcmeServerlessStackProps{
 		awscdk.StackProps{
 			Env: env(),
 		},
@@ -62,7 +62,7 @@ func main() {
 func env() *awscdk.Environment {
 	// Uncomment to specify account and region
 	// return &awscdk.Environment{
-	// 	Account: jsii.String("YOUR_ACCOUNT_ID"),
+	// 	Account: jsii.String("123456789012"),
 	// 	Region:  jsii.String("us-east-1"),
 	// }
 	return nil

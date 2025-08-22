@@ -1,15 +1,15 @@
-package com.example;
+package com.stellartech;
 
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.assertions.Template;
 import org.junit.jupiter.api.Test;
 
-public class MyStackTest {
+public class NotificationStackTest {
 
     @Test
     public void testStack() {
         App app = new App();
-        MyStack stack = new MyStack(app, "TestStack", null);
+        NotificationStack stack = new NotificationStack(app, "TestStack", null);
 
         Template template = Template.fromStack(stack);
 

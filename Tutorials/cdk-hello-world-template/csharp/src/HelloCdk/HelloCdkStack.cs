@@ -3,14 +3,14 @@ using Constructs;
 // Import the Lambda module
 using Amazon.CDK.AWS.Lambda;
 
-namespace HelloCdk
+namespace AcmeServerlessApp
 {
-    public class HelloCdkStack : Stack
+    public class AcmeServerlessStack : Stack
     {
         internal HelloCdkStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
             // Define the Lambda function resource
-            var myFunction = new Function(this, "HelloWorldFunction", new FunctionProps
+            var myFunction = new Function(this, "AcmeApiFunction", new FunctionProps
             {
                 Runtime = Runtime.NODEJS_18_X, // Provide any supported Node.js runtime
                 Handler = "index.handler",
@@ -18,7 +18,7 @@ namespace HelloCdk
                     exports.handler = async function(event) {
                         return {
                             statusCode: 200,
-                            body: JSON.stringify('Hello World!'),
+                            body: JSON.stringify('Welcome to Acme Corp API!'),
                         };
                     };
                 "),
@@ -31,7 +31,7 @@ namespace HelloCdk
             });
 
             // Define a CloudFormation output for your URL
-            new CfnOutput(this, "myFunctionUrlOutput", new CfnOutputProps
+            new CfnOutput(this, "AcmeFunctionUrlOutput", new CfnOutputProps
             {
                 Value = myFunctionUrl.Url
             });

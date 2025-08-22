@@ -1,4 +1,4 @@
-package com.myorg;
+package com.acmecorp;
 
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Environment;
@@ -10,7 +10,7 @@ public class HelloCdkApp {
 
         new HelloCdkStack(app, "HelloCdkStack", StackProps.builder()
                 // .env(Environment.builder()
-                //         .account("YOUR_ACCOUNT_ID")
+                //         .account("123456789012")
                 //         .region("us-east-1")
                 //         .build())
                 .build());
